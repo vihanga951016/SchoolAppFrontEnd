@@ -1,0 +1,80 @@
+#navbar{
+    top: 0;
+    margin-left: 19%;
+    width: 80%;
+    height: 60px;
+    background-color: rgb(33, 77, 30);
+    position: absolute;
+    z-index: 0;
+    overflow-y: auto;
+}
+
+
+.sidebar-header:hover{
+    color: black;
+    background-color: cyan;
+    
+}
+.navbar__left{
+    float: right;
+    padding: 15px;
+}
+
+#bell{
+    color: black;
+}
+
+#user{
+    color: black;
+}
+
+#bell:hover{
+    color: azure;
+}
+
+#user:hover{
+    color: azure;
+}
+
+.notification{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+
+.dropdown-menu{
+    position: fixed;
+}
+li{
+    list-style-type: none;
+}
+
+
+li.dropdown {
+    display: inline-block;
+    list-style-type: none;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    margin-left: -140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {background-color: #f1f1f1;}
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }

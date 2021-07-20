@@ -1,0 +1,92 @@
+.content{
+    width: 80%;
+    height: 100%;
+    margin-left: 19%;
+    padding-top: 5%;
+    background-color: rgb(192, 226, 192);
+}
+
+.wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.popup-teacher{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    overflow:auto;
+}
+
+.popup-inner-teacher{
+    position: relative;
+    margin-top: 300px;
+    padding: 32px;
+    width: 100%;
+    max-width: 640px;
+    background: white;
+
+}
+
+.popup-inner-teacher .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    transition: 1s;
+}
+
+/* form start */
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(51, 49, 49);
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+  transition: 0.5s;
+}
+
+.table-content{
+    width: 98%;
+    height: auto;
+    margin-left: 10px;
+    background-color: rgb(253, 253, 253);
+}
+#flexCheckIndeterminate{
+
+  margin-top: -16px;
+  margin-left: 250px;
+
+}
+
+#password{
+  height: 50px;
+  border-radius: 5px;
+  width: 536px;
+}

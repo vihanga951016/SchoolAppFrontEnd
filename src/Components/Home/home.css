@@ -1,0 +1,12 @@
+.content{
+    width: 80%;
+    height: 100%;
+    margin-left: 19%;
+    padding-top: 5%;
+    background-color: rgb(192, 226, 192);
+}
+
+.wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
