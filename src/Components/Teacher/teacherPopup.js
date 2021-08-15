@@ -14,13 +14,14 @@ function TeacherPopup(props){
     const [address, setAddress] = useState('')
     const [type, setType] = useState('')
     const [priviladge, setPriviladge] = useState(false)
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    // const [username, setUsername] = useState('')
+    // const [password, setPassword] = useState('')
 
     const onSubmit = (e) => {
         e.preventDefault()
 
-        props.onAdd({teacherId,name,teacherIndex,nic,phone,address,type,priviladge,username,password})
+        props.onAdd({teacherId,name,teacherIndex,nic,phone,address,type,priviladge})
+
 
         setId(null)
         setName('')
@@ -30,8 +31,8 @@ function TeacherPopup(props){
         setAddress('')
         setType('')
         setPriviladge(false)
-        setUsername('')
-        setPassword('')
+        // setUsername('')
+        // setPassword('')
 
         props.setTrigger(false)
 
@@ -77,15 +78,15 @@ function TeacherPopup(props){
 
                     <li>Priviladgers:</li>
                     <div className='form-control form-control-check'>
-                        <input type='checkbox' value={priviladge} checked={priviladge} onChange={(e) => setPriviladge(e.currentTarget.checked)}/>
+                        <input type='checkbox' value={priviladge} onChange={(e) => setPriviladge(e.target.checked)}/>
                     </div>
 
-                    <li>Username:</li>
+                    {/* <li>Username:</li>
                     <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" />
 
                     <li>Password:</li>
                     <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                    <br/>
+                    <br/> */}
 
                     {/* <li for="confirm">Confirm Password:</li>
                     <input type="password" id="password" name="confirm" placeholder="Confirm Password" /> */}

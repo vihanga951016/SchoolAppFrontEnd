@@ -12,6 +12,7 @@ const Teacher = () => {
     const [updateButtonPopup, setUpdateButtonPopup] = useState(false);
     const [teacher, setTeacher] = useState([])
     const [teacherId, setTeacherId] = useState(0);
+    const [UpdateTeacher, setUpdateTeacher] = useState({})
 
     // const handleChange = (teacher) => {
     //     setTeacher(teacher.target.teacherId)
@@ -39,6 +40,7 @@ const Teacher = () => {
         return data
     }
 
+
     const addTeacher = async (teachers) => {
         const res = await fetch('http://localhost:8000/teachers/addnew' , {
             method: 'POST',
@@ -53,11 +55,28 @@ const Teacher = () => {
 
     }
 
-    const deleteTeacher = (teacherId) => {
-        
+    const updateTeacher = async (id) => {
+        const res = await fetch(`http://localhost:8000/teachers/${teacherId}/update` , {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(id)
+        })
+
+        const data = await res.json()
+        setUpdateTeacher([...UpdateTeacher, data])
     }
 
-    const updateTeacher =  (id) =>{
+    const deleteTeacher = async (id) => {
+        await fetch(`http://localhost:8000/teachers/${teacherId}/delete` , {
+            method: 'DELETE',
+        })
+        
+        setTeacher(teacher.filter((teacher) => teacher.teacherId !== id))
+    }
+
+    const getTeacherId =  (id) =>{
         setUpdateButtonPopup(true)
         setTeacherId(id)
         // const data = await res.json()
@@ -96,9 +115,9 @@ const Teacher = () => {
                 <td style={{textAlign:'center'}}>{teacher.type}</td>
                 <td style={{textAlign:'center'}}>{teacher.priviladge}</td>
                 <td style={{textAlign:'center'}}>
-                    <button onClick={() => updateTeacher(teacher.teacherId)} type="button" className="btn btn-warning"><SystemUpdateAltIcon /></button>
+                    <button onClick={() => getTeacherId(teacher.teacherId)} type="button" className="btn btn-warning"><SystemUpdateAltIcon /></button>
                     {/* <button type="button" className="btn btn-warning"><SystemUpdateAltIcon /></button> */}
-                    <button type="button" className="btn btn-danger ml-2"><DeleteIcon /></button>    
+                    <button onClick={() => deleteTeacher()} type="button" className="btn btn-danger ml-2"><DeleteIcon /></button>    
                 </td>
             </tr>)}
 
@@ -108,7 +127,7 @@ const Teacher = () => {
        
         </div>
         <Popup trigger={buttonPopup} setTrigger={setbuttonPopup} onAdd={addTeacher} />
-        <UpdateTeacherPopup trigger={updateButtonPopup} setTrigger={setUpdateButtonPopup} onUpdateid={teacherId} />
+        <UpdateTeacherPopup trigger={updateButtonPopup} setTrigger={setUpdateButtonPopup} onUpdateid={teacherId} onUpdate={updateTeacher}/>
         </div>
     )
 }

@@ -3,29 +3,36 @@ import { useState , useEffect} from 'react'
 
 
 const UpdateTeacher = (props) => {
-    console.log(props.onUpdateid)
-    // const [teachers, setTeachers] = useState([])
 
     let teacherId = props.onUpdateid;
 
     const [names, setName] = useState("")
+    const [teacherIndex, setTeacherIndex] = useState("")
+    const [nic, setNic] = useState("")
+    const [phone, setPhone] = useState("")
+    const [address, setAddress] = useState("")
+    const [type, setType] = useState("")
+    const [priviladge, setPriviladge] = useState("")
 
-    console.log(names)
 
     useEffect(() => {    
         
         const fetchTeacher = () => {
             if(teacherId === 0){
-                console.log("Aaaa")
+                console.log("")
             }else{
             
             fetch(`http://localhost:8000/teachers/${teacherId}`)
             .then(res => res.json())
             .then(
-                result => {
-                    
-                    console.log(result)
+                result => {  
                     setName(result?.name)
+                    setTeacherIndex(result?.teacherIndex)
+                    setNic(result?.nic)
+                    setPhone(result?.phone)
+                    setAddress(result?.address)
+                    setType(result?.type)
+                    setPriviladge(result?.priviladge)  
                     
                 }
             )
@@ -38,6 +45,24 @@ const UpdateTeacher = (props) => {
         
     }, [teacherId])
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+
+        props.onUpdate({names,teacherIndex,nic,phone,address,type,priviladge})
+        
+        setName('')
+        setTeacherIndex(null)
+        setNic('')
+        setPhone(null)
+        setAddress('')
+        setType('')
+        setPriviladge(false)
+        // setUsername('')
+        // setPassword('')
+
+        props.setTrigger(false)
+
+    }
     
 
     
@@ -80,25 +105,25 @@ const UpdateTeacher = (props) => {
                 <ul style={{listStyleType:'none',marginTop:'10px'}}>
 
                     <li>Name:</li>
-                    <input type="text" id="name" value={names} placeholder="Name" />
+                    <input type="text" id="name" value={names} onChange={(e) => setName(e.target.value)} placeholder="Name" />
 
                     <li>Index:</li>
-                    <input type="text" id="index" placeholder="Index" />
+                    <input type="text" id="index" value={teacherIndex} onChange={(e) => setTeacherIndex(e.target.value)} placeholder="Index" />
 
                     <li>NIC:</li>
-                    <input type="text" id="nic" placeholder="NIC" />
+                    <input type="text" id="nic" value={nic}  onChange={(e) => setNic(e.target.value)} placeholder="NIC" />
 
                     <li>Phone:</li>
-                    <input type="text" id="phone" placeholder="Phone Number" />
+                    <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" />
 
                     <li>Address:</li>
-                    <input type="text" id="addrss" placeholder="Address" />
+                    <input type="text" id="addrss" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" />
 
                     {/* <li>Type:</li>
                     <input type="text" id="type" value={type} onChange={(e) => setType(e.target.value)} placeholder="Type" /> */}
 
                     <li>Type:</li>
-                    <select id="type" >
+                    <select id="type"  value={type} onChange={(e) => setType(e.target.value)}>
                         <option>-SELECT-</option>
                         <option value="teacher">Teacher</option>
                         <option value="hod">HOD</option>
@@ -110,21 +135,21 @@ const UpdateTeacher = (props) => {
 
                     <li>Priviladgers:</li>
                     <div className='form-control form-control-check'>
-                        <input type='checkbox' />
+                        <input type='checkbox'  value={priviladge} onChange={(e) => setPriviladge(e.target.checked)} />
                     </div>
 
-                    <li>Username:</li>
-                    <input type="text" id="username" placeholder="username" />
+                    {/* <li>Username:</li>
+                    <input type="text" id="username" value={username} placeholder="username" />
 
                     <li>Password:</li>
-                    <input type="password" id="password" placeholder="Password" />
-                    <br/>
+                    <input type="password" id="password" value={names} placeholder="Password" />
+                    <br/> */}
 
                     {/* <li for="confirm">Confirm Password:</li>
                     <input type="password" id="password" name="confirm" placeholder="Confirm Password" /> */}
                     
                 </ul>
-                <input style={{marginLeft:'39px',width:'537px'}} type="submit" value="Submit" />
+                <input style={{marginLeft:'39px',width:'537px'}} type="submit" value="Submit" onClick={onSubmit}/>
             </form>
 
             {props.children}
